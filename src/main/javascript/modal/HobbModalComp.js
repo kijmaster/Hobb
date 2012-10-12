@@ -104,6 +104,7 @@ define(['underscore'],
             center : function (modalEl) {
                 var top, left;
 
+                // @TODO Externalize this height shift through handlers in Hobb.js
                 top = Math.max($(window).height() - modalEl.outerHeight(), 0) / 2 - $("#menu").height();
                 left = Math.max($(window).width() - modalEl.outerWidth(), 0) / 2;
 
