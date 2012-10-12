@@ -24,12 +24,12 @@
  *      + type: either 'other' or 'close'. If 'close' is given, the script will automatically
  *              replace the given callback method by its own close method to ensure the modal
  *              is correctly closed
- *      + callback: a callback function to apply when the button is pressed
+ *      + callback: a callback function to apply when the button is pressed.
  *      + label: label of the button
  *      + class: css class to apply in addition to the internal css class 'btn' automatically added
- *               (to be removed if not necessary)
+ *               (remove this feature if not necessary)
  *
- * Second important method is 'close', it's automatically attach to any button with type 'close' given
+ * Second important method is 'close', it's automatically attach to any buttons given
  * in handlers parameter, and is called by Hobb.js before any new modal display to be sure
  * that no previous modal is present
  */
@@ -65,17 +65,17 @@ define(['underscore'],
 
             createActionButtonElement : function (button) {
                 var self = this;
-                var b = $('<a href="#" class="btn ' + button.class + '">' + button.label + '</a>');
+                var b = $('<a href="#" class="btn ' + button.b_class + '">' + button.b_label + '</a>');
                 b.on('click', function (e) {
                     e.preventDefault();
                     // If button label is 'close' apply its close method
                     // rather that external method to ensure the modal will
                     // correctly close
-                    if (button.type === 'close') {
-                        self.close();
-                    } else {
-                        button.callback();
+                    if (button.b_type !== 'close' && typeof button.b_callback() === 'function') {
+                        button.b_callback();
                     }
+                    // By default always close modal after execution of given callback
+                    self.close();
                 });
                 return b;
             },
@@ -104,12 +104,12 @@ define(['underscore'],
             center : function (modalEl) {
                 var top, left;
 
-                top = Math.max($(window).height() - modalEl.outerHeight(), 0) / 2;
+                top = Math.max($(window).height() - modalEl.outerHeight(), 0) / 2 - $("#menu").height();
                 left = Math.max($(window).width() - modalEl.outerWidth(), 0) / 2;
 
                 modalEl.css({
-                    top: top + $(window).scrollTop(),
-                    left: left + $(window).scrollLeft()
+                    top: top,
+                    left: left
                 });
             },
 
