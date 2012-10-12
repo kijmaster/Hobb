@@ -1,4 +1,25 @@
-
+/**
+ * Extend this abstract view for popup usage;
+ * Default implementation of 'render' is no-op
+ * So rewrite it to render current view with given data model into 'el' element
+ * Required:
+ *  - template must be redefined in extended view
+ *  - model must be given at creation
+ *
+ *  Example, extended view 'MyPopup':
+ *      define(['backbone',
+ *          'messaging/AbstractPopupView',
+ *          'hbs!templates/path/myTemplate'],
+ *          function(Backbone,
+ *                   AbstractPopupView
+ *                   MyTemplate){
+ *              return AbstractPopupView.extend({
+ *                  template: MyTemplate,
+ *                  className: 'Message',
+ *                  tagName: 'li',
+ *              });
+ *          });
+ */
 define(['backbone',
         'underscore'],
     function (Backbone,  _) {
