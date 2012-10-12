@@ -1,28 +1,11 @@
 /**
  * Usage examples:
  *
- *  var msg = new Message({'date': '2012-09-12', 'content': 'Hello you!'});
- *  var myPopupView = new PopupView({model: msg});
- *  // Simple modal (content = view's content, header = view's title)
- *  Hobb.modal(myPopupView);
- *
- *  // Same modal but with extra action button in additional footer area
- *  Hobb.complexModal(
- *      myPopupView,
- *      [
- *          (
- *              "label" : "Confirm",
- *              "class" : "magic-button",
- *              "type" : "other",
- *              "callback" : function (){ alert("hello !"); }
- *          )
- *      ]);
+ *  @TODO Rewrite documentation
  */
-define(['underscore',
-        'shared/modal/HobbModalComp',
+define(['shared/modal/HobbModalComp',
         'shared/view/HobbView'],
-    function (_,
-              HobbModalComponent,
+    function (HobbModalComponent,
               AbstractView) {
 
         return {
